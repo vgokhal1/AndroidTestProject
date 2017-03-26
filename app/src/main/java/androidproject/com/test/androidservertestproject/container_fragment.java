@@ -17,6 +17,9 @@ public class container_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.container_fragment,container,false);
+
+        BackgroundTask1 backgroundTask1=new BackgroundTask1(getActivity().getApplicationContext());
+        backgroundTask1.execute();
                 return view;
     }
 

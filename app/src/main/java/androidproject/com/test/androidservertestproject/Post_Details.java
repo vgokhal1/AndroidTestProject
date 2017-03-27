@@ -198,5 +198,5 @@ public class Post_Details extends ActionBarActivity implements AsyncResponse2{
         },3000);
         twice=true;
     }
-    
+
 }

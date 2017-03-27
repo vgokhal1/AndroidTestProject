@@ -30,11 +30,13 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:background="@drawable/posts2"
                 android:layout_height="match_parent">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_marginTop="20dp"
+                    android:background="#ffffff"
                     android:layout_height="wrap_content"
                     android:id="@+id/PostTitle"
 
@@ -47,6 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/PostBody"
+                    android:background="#ffffff"
                     android:layout_below="@+id/PostTitle"
                     android:layout_centerHorizontal="true"
                     android:textColor="#000"
@@ -60,6 +63,7 @@
                     android:id="@+id/PostComment"
                     android:layout_marginLeft="5dp"
                     android:gravity="left"
+                    android:background="#ffffff"
                     android:layout_below="@+id/PostBody"
                     android:layout_centerHorizontal="true"
                     android:textColor="#000"

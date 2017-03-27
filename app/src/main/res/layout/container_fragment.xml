@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:id="@+id/postlistrecyclerview"
+        android:background="@drawable/posts2"
         android:layout_alignParentBottom="true">
     </android.support.v7.widget.RecyclerView>
 

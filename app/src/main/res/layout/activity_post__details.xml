@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="androidproject.com.test.androidservertestproject.Post_Details">
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/PostTitle"
+
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PostBody"
+                android:layout_below="@+id/PostTitle"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000"
+                android:gravity="left"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="50dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PostComment"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:layout_below="@+id/PostBody"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000"
+                android:layout_marginTop="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

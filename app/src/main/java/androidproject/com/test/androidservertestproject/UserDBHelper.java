@@ -26,7 +26,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     {
 
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
-        Log.e("DATABASE_OPERATIONS", "Databse created/opened...");
+      //  Log.e("DATABASE_OPERATIONS", "Databse created/opened...");
 
 
     }
@@ -34,7 +34,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_TABLE_POSTS);
-        Log.e("DB Operations", "POSTS Table Created...");
+       // Log.e("DB Operations", "POSTS Table Created...");
     }
 
     @Override
@@ -60,7 +60,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
         cnt++;
 
 
-        Log.e("DB Operations", "1 row Inserted in..." + UserAccDBName + " Count:" + cnt);
+       // Log.e("DB Operations", "1 row Inserted in..." + UserAccDBName + " Count:" + cnt);
     }
 
     public Cursor getInformations(SQLiteDatabase db)

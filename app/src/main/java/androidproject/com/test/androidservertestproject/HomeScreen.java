@@ -2,14 +2,10 @@ package androidproject.com.test.androidservertestproject;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 
 
 public class HomeScreen extends ActionBarActivity {
@@ -27,7 +23,7 @@ public class HomeScreen extends ActionBarActivity {
         fragmentTransaction.commit();
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Available Posts...");
+        getSupportActionBar().setTitle("Post List");
 
 
     }

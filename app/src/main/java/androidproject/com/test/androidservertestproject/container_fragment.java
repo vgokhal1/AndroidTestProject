@@ -1,11 +1,8 @@
 package androidproject.com.test.androidservertestproject;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -61,7 +57,7 @@ public class container_fragment extends Fragment implements AsyncResponse {
 
 
         if(output.contains("Operation Successful")){
-            Log.i("", "Retrived Data:" + output);
+           // Log.i("", "Retrived Data:" + output);
 
 
 
@@ -97,7 +93,7 @@ public class container_fragment extends Fragment implements AsyncResponse {
 
             }
             userDBHelper.close();
-            adapter=new RecyclerAdapter(arrayList);
+            adapter=new RecyclerAdapter(arrayList,getActivity());
             recyclerView.setAdapter(adapter);
         }
         else{

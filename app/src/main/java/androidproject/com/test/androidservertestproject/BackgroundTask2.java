@@ -1,13 +1,11 @@
 package androidproject.com.test.androidservertestproject;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,10 +18,10 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
 
     UserDBHelper userDBHelper;
     SQLiteDatabase sqLiteDatabase;
-    JSONObject jsonObject;
     JSONArray jsonArray;
     Context ctx;
     public AsyncResponse delegate;
+    ProgressDialog progressDialog;
 
     public BackgroundTask2(Context ctx){
 
@@ -32,7 +30,12 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
-      //  delegate= (AsyncResponse) this;
+        progressDialog=new ProgressDialog(ctx);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.setMessage("Finishing up fetching...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     @Override
@@ -60,8 +63,7 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
                 title=JO.getString("title");
                 body=JO.getString("body");
 
-
-
+                Thread.sleep(5);
 
                 count++;
 
@@ -74,8 +76,9 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
 
 
         return null;
@@ -84,7 +87,9 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String s) {
+
         delegate.processFinish(s);
+        progressDialog.dismiss();
     }
 
 

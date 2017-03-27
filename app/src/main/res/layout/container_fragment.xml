@@ -4,16 +4,13 @@
     android:layout_height="match_parent">
 
 
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tittle"
-        android:text="Demo Testing"
-        android:gravity="center"
-        android:textColor="#000"/>
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/postlistrecyclerview"
+        android:layout_alignParentBottom="true">
+    </android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

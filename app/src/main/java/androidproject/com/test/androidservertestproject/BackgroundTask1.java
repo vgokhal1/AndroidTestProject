@@ -1,5 +1,7 @@
 package androidproject.com.test.androidservertestproject;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -34,8 +36,10 @@ public class BackgroundTask1 extends AsyncTask<String, Void, String> {
 
     Context ctx;
     String response,line="";
+    ProgressDialog progressDialog;
+    public AsyncResponse delegate;
 
-    BackgroundTask1(Context ctx)
+    public BackgroundTask1(Context ctx)
     {
         this.ctx=ctx;
     }
@@ -84,7 +88,19 @@ public class BackgroundTask1 extends AsyncTask<String, Void, String> {
         //Log.i("", "Retrived Data:" + result);
         //Log.i("", "Data Size:" + result.length());
 
-        BackgroundTask2 backgroundTask2=new BackgroundTask2(ctx);
-        backgroundTask2.execute(result);
+       // BackgroundTask2 backgroundTask2=new BackgroundTask2(ctx);
+       // backgroundTask2.execute(result);
+        delegate.processFinish(result);
+        progressDialog.dismiss();
+    }
+
+    @Override
+    protected void onPreExecute() {
+        progressDialog=new ProgressDialog(ctx);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setTitle("Please wait!");
+        progressDialog.setMessage("Fetching Information from server....");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 }

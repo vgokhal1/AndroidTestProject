@@ -7,13 +7,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class HomeScreen extends ActionBarActivity {
 
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,13 @@ public class HomeScreen extends ActionBarActivity {
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         container_fragment containerFragment=new container_fragment();
-        fragmentTransaction.add(R.id.fragment_container,containerFragment);
+        fragmentTransaction.add(R.id.fragment_container, containerFragment);
         fragmentTransaction.commit();
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Available Posts...");
+
+
     }
 
     @Override

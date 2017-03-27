@@ -2,6 +2,7 @@ package androidproject.com.test.androidservertestproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -57,6 +58,18 @@ public class UserDBHelper extends SQLiteOpenHelper {
         UserAccDBName="POSTS";
         db.insert(UserAccDBName, null, contentValues);
         cnt++;
-        Log.e("DB Operations", "1 row Inserted in..."+UserAccDBName+" Count:"+cnt);
+
+
+        Log.e("DB Operations", "1 row Inserted in..." + UserAccDBName + " Count:" + cnt);
+    }
+
+    public Cursor getInformations(SQLiteDatabase db)
+    {
+        Cursor cursor;
+        UserAccDBName="POSTS";
+        String[] Projections= {"userId","id","title","body"};
+        cursor=db.query(UserAccDBName,Projections,null,null,null,null,null);
+        return cursor;
+
     }
 }

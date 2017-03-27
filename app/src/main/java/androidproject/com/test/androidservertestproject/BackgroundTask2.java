@@ -1,10 +1,13 @@
 package androidproject.com.test.androidservertestproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,10 +23,16 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
     JSONObject jsonObject;
     JSONArray jsonArray;
     Context ctx;
+    public AsyncResponse delegate;
 
-    BackgroundTask2(Context ctx){
+    public BackgroundTask2(Context ctx){
 
         this.ctx=ctx;
+    }
+
+    @Override
+    protected void onPreExecute() {
+      //  delegate= (AsyncResponse) this;
     }
 
     @Override
@@ -52,6 +61,8 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
                 body=JO.getString("body");
 
 
+
+
                 count++;
 
                 userDBHelper.addPostsInfo(userId, id, title, body, sqLiteDatabase);
@@ -70,8 +81,11 @@ public class BackgroundTask2 extends AsyncTask<String,Void,String> {
         return null;
     }
 
+
     @Override
     protected void onPostExecute(String s) {
-        Log.i("", "Status:" + s);
+        delegate.processFinish(s);
     }
+
+
 }

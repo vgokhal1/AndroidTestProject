@@ -1,12 +1,18 @@
 package androidproject.com.test.androidservertestproject;
 
+import android.content.Intent;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +26,9 @@ public class Post_Details extends ActionBarActivity implements AsyncResponse2{
     JSONArray jsonArray;
     Toolbar toolbar;
     StringBuilder stringBuilder=new StringBuilder();
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +46,43 @@ public class Post_Details extends ActionBarActivity implements AsyncResponse2{
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Post Details");
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle=new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        navigationView= (NavigationView)findViewById(R.id.navigation_view);
+        //Set the Navigation Bar Click Events
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        Intent intent = new Intent(getApplication(), HomeScreen.class);
+                        startActivity(intent);
+                        menuItem.setChecked(true);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.setting:
+                        Intent intent2 = new Intent(getApplication(), Settings.class);
+                        startActivity(intent2);
+                        drawerLayout.closeDrawers();
+                        break;
+
+
+                }
+
+
+                return false;
+            }
+        });
 
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
 
     @Override
     public void processFinish2(String status,String output) {
@@ -134,4 +177,26 @@ public class Post_Details extends ActionBarActivity implements AsyncResponse2{
 
 
     }
+    boolean twice;
+    @Override
+    public void onBackPressed() {
+        if(twice==true){
+            Intent intent=new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        }
+        Toast.makeText(getBaseContext(), "Press again to Exit...", Toast.LENGTH_LONG).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                twice=false;
+            }
+        },3000);
+        twice=true;
+    }
+    
 }

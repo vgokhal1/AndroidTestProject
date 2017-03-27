@@ -1,12 +1,7 @@
 package androidproject.com.test.androidservertestproject;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -18,10 +13,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
-public class HomeScreen extends ActionBarActivity {
+public class Settings extends ActionBarActivity {
 
     Toolbar toolbar;
-
+    StringBuilder stringBuilder=new StringBuilder();
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -29,15 +24,11 @@ public class HomeScreen extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
-        FragmentManager fragmentManager=getFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        container_fragment containerFragment=new container_fragment();
-        fragmentTransaction.add(R.id.fragment_container, containerFragment);
-        fragmentTransaction.commit();
+        setContentView(R.layout.activity_settings);
+
         toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Post List");
+        getSupportActionBar().setTitle("Settings");
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         actionBarDrawerToggle=new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
@@ -67,14 +58,12 @@ public class HomeScreen extends ActionBarActivity {
                 return false;
             }
         });
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
 
@@ -84,6 +73,20 @@ public class HomeScreen extends ActionBarActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     boolean twice;
     @Override
     public void onBackPressed() {
@@ -105,4 +108,5 @@ public class HomeScreen extends ActionBarActivity {
         },3000);
         twice=true;
     }
+
 }
